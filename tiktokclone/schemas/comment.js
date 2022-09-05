@@ -13,7 +13,7 @@ export default {
         {
             name: 'comment',
             title: 'Comment',
-            string: 'string'
+            type: 'string'
         }
     ]
 }
