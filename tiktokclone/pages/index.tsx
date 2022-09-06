@@ -2,7 +2,6 @@ import type { NextPage } from "next";
 import Head from "next/head";
 import Image from "next/image";
 import React from 'react';
-import styles from '../styles/Home.module.css'
 
 const Home: NextPage = () => {
     return (
@@ -10,7 +9,7 @@ const Home: NextPage = () => {
             <Head>
                 <title>Create Next App</title>
             </Head>
-            <div>test 123!</div>
+            <div className="text-3xl font-bold underline red-400">test 123!</div>
         </div>
     )
 }
