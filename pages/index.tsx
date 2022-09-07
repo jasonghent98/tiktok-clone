@@ -3,6 +3,7 @@ import Head from "next/head";
 import Image from "next/image";
 import React from 'react';
 import "tailwindcss/tailwind.css"
+import App from "./app";
 
 const Home: NextPage = () => {
     return (
@@ -12,6 +13,7 @@ const Home: NextPage = () => {
             </Head>
             <h1 className="text-3xl font-bold underline">Hello world!</h1>
             <div className="text-xl text-blue-400">testing tailwind</div>
+            <App/>
         </div>
     )
 }
