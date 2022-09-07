@@ -8,7 +8,6 @@ import {IoMdAdd} from 'react-icons/io'
 import Logo from '../utils/tiktok-logo.avif'
 
 export const Navbar = () => {
-  console.log(Logo)
   return (
     <div className='w-full flex justify-between items-center border-b-2 border-gray-200 py-2 px-4'>
       <Link href='/'>

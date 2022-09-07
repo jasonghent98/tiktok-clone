@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useEffect, useState} from 'react'
 import { NextPage } from 'next'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
@@ -9,13 +9,15 @@ import {ImCancelCircle} from 'react-icons/im'
 export const Sidebar = () => {
   const [showSidebar, setShowSidebar] = useState(true)
 
+  const isLoggedIn = false
+
+  useEffect(() => console.log(showSidebar), [showSidebar])
+
   const normalLink = 'flex items-center gap-3 hover:bg-primary p-3 justify-center xl:justify-start cursor-pointer font-semibold text-[#f51997] rounded'
   return (
     <div>
       <div className="block xl:hidden m-2 ml-4 mt-3 text-xl"
-            onClick={() => setShowSidebar((prevState) => !prevState)}>
-
-      </div>
+            onClick={() => setShowSidebar(prevState => !prevState)}>
       {showSidebar ? <ImCancelCircle /> : <AiOutlineMenu />}
       {showSidebar && (
         <div className='xl:w-400 w-20 flex flex-col justify-start mb-10 border-4-2 border-gray-100 xl:border-0 p-3'>
@@ -29,12 +31,16 @@ export const Sidebar = () => {
               </div>
               </Link>
           </div>
-        </div>
+          {/* check if user is logged in to render 'login' page or 'go to profile' */}
+          {isLoggedIn && (
+            <div>
+              <p>Log in to like and comment on videos</p>
+            </div>
+          )}
+        </div>   
       )}
+    </div>
 
-        {/* check if user is logged in to render 'login' page or 'go to profile' */}
-
-        
     </div>
   )
 }
