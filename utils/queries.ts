@@ -1,4 +1,5 @@
 // these will be the calls our users will make to get videos
+// GROQ from sanity as a query language
 export const allPostsQuery = () => {
     const query = `*[_type == "post"] | order(_createdAt desc){
       _id,

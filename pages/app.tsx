@@ -2,6 +2,8 @@ import type { AppProps } from 'next/app'
 import React, {useEffect, useState} from 'react'
 import Sidebar  from '../components/Sidebar'
 import Navbar  from '../components/Navbar'
+import axios from 'axios'
+import { AiFillWeiboSquare } from 'react-icons/ai'
 
 const App = () => {
     const [isSSr, setIsSSR] = useState(true)
@@ -25,6 +27,19 @@ const App = () => {
         </div>
     </div>
   )
+}
+
+// should use this if the data must be fetched at request time (fetching videos)
+export const getServerSideProps = () => {
+    const res = axios.get(`http://localhost:3000/api/post`)
+    .then(res => console.log(res))
+    .catch(err => console.log(err))
+
+    return {
+        props: {
+
+        }
+    }
 }
 
 export default App
