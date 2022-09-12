@@ -3,7 +3,7 @@ import {Video} from '../types.dev'
 import {NextPage} from 'next'
 import Link from 'next/link'
 import Image from 'next/image'
-import {HiVolumeUp, HIVolumeOff} from 'react-icons/hi'
+import {HiVolumeUp, HiVolumeOff} from 'react-icons/hi'
 import {BsPlay, BsFillPlayFill, BsFillPauseFill} from 'react-icons/bs'
 import {GoVerified} from 'react-icons/go'
 
@@ -17,7 +17,9 @@ export const VideoCard: NextPage<IProps> = ({post}) => {
     <div className='flex flex-col border-b-2 border-gray-200 pb6'>
         {/* // wrapper */}
         <div>
-            <div className='flex gap-3 p-2 cursor-pointer font-semibold rounded'>
+            {/* can be reformatted to be a card wrapper component */}
+            <div className='flex gap-3 p-3 cursor-pointer font-semibold rounded'>
+                {/* profile photo */}
                 <div className='md:w-16 md:h-16 w-10 h-10'>
                     <Link href='/'>
                         <Image
@@ -31,6 +33,20 @@ export const VideoCard: NextPage<IProps> = ({post}) => {
                     </Link>
                 </div>
 
+                {/* render the username who posted this video */}
+                <div>
+                    <Link href='/'>
+                        <div>
+                            <p>
+                                {post.postedBy.userName}
+                                <GoVerified className='text-blue-400 text-md'/>
+                            </p>
+                            <p>
+                                {post.postedBy.userName}
+                            </p>
+                        </div>
+                    </Link>
+                </div>
             </div>
         </div>
     </div>
