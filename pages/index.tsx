@@ -4,8 +4,16 @@ import Image from "next/image";
 import React from 'react';
 import "tailwindcss/tailwind.css"
 import App from "./app";
+import axios from "axios";
+import { Video } from "../types.dev";
 
-const Home: NextPage = () => {
+// our props returned will be an array of videos
+interface IProps {
+    video: Video[]
+}
+
+const Home = ({videos} : IProps) => {
+    console.log(videos)
     return (
         <div>
             <Head>
@@ -14,6 +22,16 @@ const Home: NextPage = () => {
             <App/>
         </div>
     )
+}
+
+export const getServerSideProps = async () => {
+    const {data} = await axios.get(`http://localhost:3000/api/post`)
+    console.log(data)
+    return {
+        props: {
+            videos: data
+        }
+    }
 }
 
 export default Home
