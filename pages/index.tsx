@@ -9,17 +9,16 @@ import { Video } from "../types.dev";
 
 // our props returned will be an array of videos
 interface IProps {
-    video: Video[]
+    videos: Video[]
 }
 
 const Home = ({videos} : IProps) => {
-    console.log(videos)
     return (
         <div>
             <Head>
                 <title>TikTok Clone</title>
             </Head>
-            <App/>
+            <App videos={videos}/>
         </div>
     )
 }

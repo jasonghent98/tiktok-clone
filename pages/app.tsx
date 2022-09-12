@@ -2,8 +2,16 @@ import React, {useEffect, useState} from 'react'
 import Sidebar  from '../components/Sidebar'
 import Navbar  from '../components/Navbar'
 import { AiFillWeiboSquare } from 'react-icons/ai'
+import { Video } from '../types.dev'
+import {VideoCard} from '../components/VideoCard'
+import {NoResults} from '../components/NoResults'
 
-const App = () => {
+interface IProps {
+    videos: Video[]
+}
+
+const App = ({videos}: IProps) => {
+    console.log(videos)
     const [isSSr, setIsSSR] = useState(true)
     useEffect(() => {
         setIsSSR(false)
@@ -20,6 +28,15 @@ const App = () => {
             </div>
             <div className='mt-4 flex flex-col gap-10 overflow-auto h-[88vh] videos flex-1 '>
                 {/* <Component {...pageProps} /> */}
+            </div>
+            <div className='flex flex-col gap-10 videos h-full'>
+                {videos.length ? (
+                    videos.map((video: Video) => (
+                        <VideoCard post={video} key={video._id}/>
+                    ))
+                ) : (
+                    <NoResults text={'No Videos'}/>
+                )}
             </div>
         </div>
     </div>
