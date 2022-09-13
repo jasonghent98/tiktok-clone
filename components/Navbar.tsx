@@ -6,6 +6,7 @@ import {GoogleLogin, googleLogout} from '@react-oauth/google'
 import {AiOutlineLogout} from 'react-icons/ai'
 import {IoMdAdd} from 'react-icons/io'
 import Logo from '../utils/tiktok-logo.avif'
+import { getOrCreateUser } from '../utils'
 
 export const Navbar = () => {
   const [user, setUser] = useState(false)
@@ -31,7 +32,7 @@ export const Navbar = () => {
             <div>Logged in</div>
           ): 
           <GoogleLogin 
-            onSuccess={(res) => console.log(res)} 
+            onSuccess={res => getOrCreateUser(res)} 
             onError={() => console.log('error')}
           />
           }
