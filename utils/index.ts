@@ -39,5 +39,5 @@ export const getOrCreateUser = async (response: any) => {
   }
 
   // make an api call to pass data with this req
-  await axios.post('http://localhost:3000/api/auth', user)
+  await axios.post('http://localhost:3000/api/auth', user) 
 }
