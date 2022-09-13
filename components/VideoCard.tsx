@@ -75,10 +75,19 @@ export const VideoCard: NextPage<IProps> = ({post}) => {
                         {/* if video is playing, we need to show a pause button, if not, we show a play button */}
                         {isPlaying ? 
                         <button>
-                            <BsFillPauseFill />
+                            <BsFillPauseFill className='text-black text-2xl lg:text-4xl' />
                         </button> : 
                         <button>
-                            <BsFillPauseFill />
+                            <BsFillPauseFill className='text-black text-2xl lg:text-4xl' />
+                        </button>
+                        }
+                        {/* if video is muted, we show the volume as off */}
+                        {isVideoMuted ? 
+                        <button>
+                            <HiVolumeOff className='text-black text-2xl lg:text-4xl' />
+                        </button> : 
+                        <button>
+                            <HiVolumeUp className='text-black text-2xl lg:text-4xl' />
                         </button>
                         }
                     </div>
