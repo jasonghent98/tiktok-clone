@@ -17,6 +17,21 @@ export const VideoCard: NextPage<IProps> = ({post}) => {
     const [isHover, setIsHover] = useState(false)
     const [isPlaying, setIsPlaying] = useState(false)
     const [isVideoMuted, setIsVideoMuted] = useState(false)
+    const videoRef = useRef<HTMLVideoElement>(null)
+
+    // change the state of the video
+    const onVideoPress = () => {
+        if (isPlaying) {
+            // pause the video
+            videoRef?.current?.pause()
+            // change the state of the video
+            setIsPlaying(false)
+            return
+        }
+        // otherwise we play the video and set its state
+        videoRef?.current?.play()
+        setIsPlaying(true)
+    }
   return (
     <div className='flex flex-col border-b-2 border-gray-200 pb6'>
         {/* // wrapper */}
@@ -62,10 +77,10 @@ export const VideoCard: NextPage<IProps> = ({post}) => {
                 <Link href='/'>
                     <video 
                     src={post.video.asset.url}
+                    ref={videoRef}
                     loop
                     className='md:h-[400px] lg:w[600px] h-[300px] lg:h-[530px] w-[200px]'
                     >
-
                     </video>
                 </Link>
 
@@ -74,11 +89,11 @@ export const VideoCard: NextPage<IProps> = ({post}) => {
                     <div>
                         {/* if video is playing, we need to show a pause button, if not, we show a play button */}
                         {isPlaying ? 
-                        <button>
+                        <button onClick={onVideoPress}>
                             <BsFillPauseFill className='text-black text-2xl lg:text-4xl' />
                         </button> : 
-                        <button>
-                            <BsFillPauseFill className='text-black text-2xl lg:text-4xl' />
+                        <button onClick={onVideoPress}>
+                            <BsFillPlayFill className='text-black text-2xl lg:text-4xl' />
                         </button>
                         }
                         {/* if video is muted, we show the volume as off */}
