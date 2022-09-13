@@ -13,6 +13,8 @@ interface IProps {
 }
 
 export const VideoCard: NextPage<IProps> = ({post}) => {
+
+    const [isHover, setIsHover] = useState(false)
   return (
     <div className='flex flex-col border-b-2 border-gray-200 pb6'>
         {/* // wrapper */}
@@ -36,17 +38,36 @@ export const VideoCard: NextPage<IProps> = ({post}) => {
                 {/* render the username who posted this video */}
                 <div>
                     <Link href='/'>
-                        <div>
-                            <p>
+                        <div className='flex items-center gap-2'>
+                            <p className='flex gap-2 items-center md:text-md font-bold text-primary'>
                                 {post.postedBy.userName}
                                 <GoVerified className='text-blue-400 text-md'/>
                             </p>
-                            <p>
+                            <p className='capitalize font-medium hidden md:block text-xs text-gray-500'>
                                 {post.postedBy.userName}
                             </p>
                         </div>
                     </Link>
                 </div>
+            </div>
+        </div>
+
+        {/* create the video */}
+        <div className="lg:ml-20 flex gap-4 relative">
+            <div className='rounded-3xl'
+                 onMouseEnter={() => setIsHover(true)}
+                 onMouseLeave={() => setIsHover(false)}>
+                <Link href='/'>
+                    <video 
+                    src={post.video.asset.url}
+                    loop
+                    className='md:h-[400px] lg:w[600px] h-[300px] lg:h-[530px] w-[200px]'
+                    >
+
+                    </video>
+                </Link>
+
+                {/* if we are hovering on the video, we want to show mute mute and volume buttons */}
             </div>
         </div>
     </div>

@@ -11,7 +11,6 @@ interface IProps {
 }
 
 const App = ({videos}: IProps) => {
-    console.log(videos)
     const [isSSr, setIsSSR] = useState(true)
     useEffect(() => {
         setIsSSR(false)
