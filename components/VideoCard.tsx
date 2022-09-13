@@ -18,7 +18,7 @@ export const VideoCard: NextPage<IProps> = ({post}) => {
     const [isPlaying, setIsPlaying] = useState(false)
     const [isVideoMuted, setIsVideoMuted] = useState(false)
     const videoRef = useRef<HTMLVideoElement>(null)
-
+    console.log(videoRef)
     // change the state of the video
     const onVideoPress = () => {
         if (isPlaying) {
@@ -32,6 +32,22 @@ export const VideoCard: NextPage<IProps> = ({post}) => {
         videoRef?.current?.play()
         setIsPlaying(true)
     }
+
+    // needs to be fixed 
+
+
+    // const onVideoMute = () => {
+    //     // unmute
+    //     if (isVideoMuted) {
+    //         if (videoRef?.current?.muted) !videoRef.current.muted
+    //         setIsVideoMuted(false)
+    //         return
+    //     }
+    //     // mute 
+    //     if (videoRef?.current?.muted) !videoRef.current.muted
+    //     setIsVideoMuted(true)
+    // }
+
   return (
     <div className='flex flex-col border-b-2 border-gray-200 pb6'>
         {/* // wrapper */}
@@ -86,7 +102,7 @@ export const VideoCard: NextPage<IProps> = ({post}) => {
 
                 {/* if we are hovering on the video, we want to show mute mute and volume buttons */}
                 {isHover && (
-                    <div>
+                    <div className='absolute bottom-6 cursor-pointer left-8 md:left-14 lg:left-0 flex gap-10 lg:justify-between w-[100px] md:w-[50px] p-3'>
                         {/* if video is playing, we need to show a pause button, if not, we show a play button */}
                         {isPlaying ? 
                         <button onClick={onVideoPress}>
@@ -98,10 +114,10 @@ export const VideoCard: NextPage<IProps> = ({post}) => {
                         }
                         {/* if video is muted, we show the volume as off */}
                         {isVideoMuted ? 
-                        <button>
+                        <button onClick={() => setIsVideoMuted(false)}>
                             <HiVolumeOff className='text-black text-2xl lg:text-4xl' />
                         </button> : 
-                        <button>
+                        <button onClick={() => setIsVideoMuted(true)}>
                             <HiVolumeUp className='text-black text-2xl lg:text-4xl' />
                         </button>
                         }
