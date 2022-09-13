@@ -5,6 +5,8 @@ import { AiFillWeiboSquare } from 'react-icons/ai'
 import { Video } from '../types.dev'
 import {VideoCard} from '../components/VideoCard'
 import {NoResults} from '../components/NoResults'
+import {GoogleOAuthProvider} from "@react-oauth/google"
+
 
 interface IProps {
     videos: Video[]
@@ -19,7 +21,7 @@ const App = ({videos}: IProps) => {
     if (isSSr) return null;
     
   return (
-    <div>
+    <GoogleOAuthProvider clientId={`${process.env.GOOGLE_API_TOKEN}`}>
         <Navbar/>
         <div className="flex gap-6 md:gap-20">
             <div className="h-[92vh overflow-hidden xl:hover:overflow-auto">
@@ -38,7 +40,7 @@ const App = ({videos}: IProps) => {
                 )}
             </div>
         </div>
-    </div>
+    </GoogleOAuthProvider>
   )
 }
 

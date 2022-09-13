@@ -2,7 +2,6 @@ import React, {useEffect, useState} from 'react'
 import { NextPage } from 'next'
 import Link from 'next/link'
 import { useRouter } from 'next/router'
-import GoogleLogin from 'react-google-login'
 import {AiFillHome, AiOutlineMenu} from 'react-icons/ai'
 import {ImCancelCircle} from 'react-icons/im'
 import { Discover } from './Discover'
@@ -43,7 +42,7 @@ export const Sidebar = () => {
               <p className='text-gray-400 '>Log in to like and comment on videos</p>
               <div className='pr-4'>
                 {/* requires a clientid, key to generate to login. also takes onSuccess handler, onFailure*/}
-                <GoogleLogin 
+                {/* <GoogleLogin 
                   clientId=''
                   render={renderProps =>  
                       <button 
@@ -55,7 +54,7 @@ export const Sidebar = () => {
                   }
                   onSuccess={() => {}}
                   onFailure={() => {}}
-                />
+                /> */}
               </div>
             </div>
           )} 
