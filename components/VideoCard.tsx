@@ -15,6 +15,8 @@ interface IProps {
 export const VideoCard: NextPage<IProps> = ({post}) => {
 
     const [isHover, setIsHover] = useState(false)
+    const [isPlaying, setIsPlaying] = useState(false)
+    const [isVideoMuted, setIsVideoMuted] = useState(false)
   return (
     <div className='flex flex-col border-b-2 border-gray-200 pb6'>
         {/* // wrapper */}
@@ -68,6 +70,19 @@ export const VideoCard: NextPage<IProps> = ({post}) => {
                 </Link>
 
                 {/* if we are hovering on the video, we want to show mute mute and volume buttons */}
+                {isHover && (
+                    <div>
+                        {/* if video is playing, we need to show a pause button, if not, we show a play button */}
+                        {isPlaying ? 
+                        <button>
+                            <BsFillPauseFill />
+                        </button> : 
+                        <button>
+                            <BsFillPauseFill />
+                        </button>
+                        }
+                    </div>
+                )}
             </div>
         </div>
     </div>
