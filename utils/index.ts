@@ -27,7 +27,7 @@ export const createOrGetUser = async (response: any, addUser: any) => {
 */
 
 // use the jwtDecode method to convert the jwt response credential into an object
-export const getOrCreateUser = async (response: any) => {
+export const getOrCreateUser = async (response: any, addUser: any) => {
   const decoded: {name: string, picture: string, sub: string}= jwtDecode(response.credential)
   const {name, picture, sub} = decoded
 
@@ -37,6 +37,9 @@ export const getOrCreateUser = async (response: any) => {
     userName: name,
     image: picture
   }
+
+  // user will be added to persistent state
+  addUser(user)
 
   // make an api call to pass data with this req
   await axios.post('http://localhost:3000/api/auth', user) 

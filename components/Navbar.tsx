@@ -7,9 +7,10 @@ import {AiOutlineLogout} from 'react-icons/ai'
 import {IoMdAdd} from 'react-icons/io'
 import Logo from '../utils/tiktok-logo.avif'
 import { getOrCreateUser } from '../utils'
+import useAuthStore from '../store/authStore'
 
 export const Navbar = () => {
-  const [user, setUser] = useState(false)
+  const {userProfile, addUser} = useAuthStore()
 
   return (
     <div className='w-full flex justify-between items-center border-b-2 border-gray-200 py-2 px-4'>
@@ -28,11 +29,11 @@ export const Navbar = () => {
 
         <div>
           {/* check if we have a user logged in  */}
-          {user ? (
-            <div>Logged in</div>
+          {userProfile ? (
+            <div>{userProfile.userName}</div>
           ): 
           <GoogleLogin 
-            onSuccess={res => getOrCreateUser(res)} 
+            onSuccess={res => getOrCreateUser(res, addUser)} 
             onError={() => console.log('error')}
           />
           }
