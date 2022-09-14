@@ -9,6 +9,20 @@ import useAuthStore from '../store/authStore'
 const Upload = () => {
     const [isLoading, setIsLoading] = useState(false)
     const [videoAsset, setVideoAsset] = useState(null)
+    const [wrongFileType, setWrongFileType] = useState(false)
+
+    const uploadVideo = async (e: any) => {
+        const selectedFile = e.target.files[0]
+        const fileTypes = ['video/mp4', 'video/wav']
+        // the file type is supported
+        if (fileTypes.includes(selectedFile.type)) {
+
+            return
+        } 
+        // not supported
+        setIsLoading(false)
+        setWrongFileType(true)
+    }
   return (
     <div className='flex w-full h-full'>
         <div className='bg-white rounded-lg'>
@@ -53,6 +67,12 @@ const Upload = () => {
                                         Select File
                                     </p>
                                 </div>
+                                <input 
+                                    type="file" 
+                                    className='w-0 h-0'
+                                    name='upload-video'
+                                    onChange={(e) => uploadVideo(e)}
+                                />
                             </div>
                         }
                     </div>
