@@ -37,6 +37,21 @@ export const Navbar = () => {
                   <span className='hidden md:block'>Upload</span>
                 </button>
               </Link>
+              {userProfile.image && (
+                 <Link href='/'>
+                   <Image
+                    height={40}
+                    width={40}
+                    src={userProfile.image}
+                    className='rounded-full cursor-pointer'
+                    alt='profile photo'
+                    layout='responsive'
+                 />
+                 </Link>
+              )}
+              <button type='button' className='px-2'>
+                <AiOutlineLogout color='red' fontSize={21}/>
+              </button>
             </div>
           ): 
           <GoogleLogin 
