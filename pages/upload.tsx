@@ -33,8 +33,8 @@ const Upload = () => {
         setWrongFileType(true)
     }
   return (
-    <div className='flex w-full h-full'>
-        <div className='bg-white rounded-lg'>
+    <div className='flex w-full h-full justify-center absolute left-0 top-[60px] md:top-20'>
+        <div className='bg-white rounded-lg xl:h-[80vh] flex gap-6 flex-wrap justify-center items-center pt-6 p-6'>
             <div>
                 <div>
                     <p className='text-2xl font-bold'>Upload Video</p>
@@ -90,11 +90,20 @@ const Upload = () => {
                                     onChange={(e) => uploadVideo(e)}
                                 />
                             </label>
+
                         }
                     </div>
                     }
+                    {/* if video type not supported */ }
+                    {wrongFileType && (
+                            <p className='text-center text-red-400 font-semibold mt-4'>File type not supported</p>
+                    )}
                 </div>
             </div>
+              {/* form for file submission */}
+              <div className='flex flex-col gap-3 pb-10'>
+                    test
+                </div>
         </div>
     </div>
   )
