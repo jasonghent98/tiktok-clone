@@ -6,6 +6,7 @@ import axios from 'axios'
 import { client } from '../utils/client'
 import { SanityAssetDocument } from '@sanity/client'
 import useAuthStore from '../store/authStore'
+import { topics } from '../utils/constants'
 
 const Upload = () => {
     const [isLoading, setIsLoading] = useState(false)
@@ -102,8 +103,34 @@ const Upload = () => {
             </div>
               {/* form for file submission */}
               <div className='flex flex-col gap-3 pb-10'>
-                    test
+                <label className='text-md'>Caption</label>
+                        <input 
+                            type="text"
+                            value=''
+                            onChange={() => {}}
+                            className='rounded outline-none text-md border-2 border-gray-200 p-2' 
+                        />
+                <label className='text-md'>Choose a Category</label>
+                <select 
+                    className='outline-none border-2 border-gray-200 text-md capitalize lg:p-4 p-2 cursor-pointer'
+                    name="" 
+                    id=""
+                    onChange={() => {}}
+                >
+                    {topics.map(topic => (
+                        <option 
+                            key={topic.name}
+                            className='outline-none capitalize bg-white '
+                        >
+                            {topic.name}
+                        </option>
+                    ))}
+                </select>
+                <div className="flex gap-6 mt-10">
+                    <button className='border-gray-300 bg-[#F51997] p-2 rounded w-28 lg:w-44 outline-none text-md'onClick={() => {}} type='button'>Discard</button>
+                    <button className='border-gray-300 bg-[#F51997] p-2 rounded w-28 lg:w-44 outline-none text-md'onClick={() => {}} type='button'>Post</button>
                 </div>
+               </div>
         </div>
     </div>
   )
