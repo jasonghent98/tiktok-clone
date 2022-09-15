@@ -30,7 +30,6 @@ const Upload = () => {
             }).then(data => { // once the promise, resolves
                 setVideoAsset(data)
                 setIsLoading(false)
-                console.log(data)
             }).catch(err => console.log(err))
             return
         } 
