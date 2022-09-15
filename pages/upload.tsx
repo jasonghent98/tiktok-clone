@@ -4,19 +4,28 @@ import { FaCloudUploadAlt } from 'react-icons/fa'
 import {MdDelete} from 'react-icons/md'
 import axios from 'axios'
 import { client } from '../utils/client'
+import { SanityAssetDocument } from '@sanity/client'
 import useAuthStore from '../store/authStore'
 
 const Upload = () => {
     const [isLoading, setIsLoading] = useState(false)
-    const [videoAsset, setVideoAsset] = useState(null)
+    const [videoAsset, setVideoAsset] = useState<SanityAssetDocument | undefined>()
     const [wrongFileType, setWrongFileType] = useState(false)
 
     const uploadVideo = async (e: any) => {
         const selectedFile = e.target.files[0]
         const fileTypes = ['video/mp4', 'video/wav']
+        if (e.cancelable) return 
         // the file type is supported
         if (fileTypes.includes(selectedFile.type)) {
-
+            client.assets.upload('file', selectedFile, {
+                contentType: selectedFile.type,
+                filename: selectedFile.name
+            }).then(data => { // once the promise, resolves
+                setVideoAsset(data)
+                setIsLoading(false)
+                console.log(data)
+            }).catch(err => console.log(err))
             return
         } 
         // not supported
@@ -40,11 +49,18 @@ const Upload = () => {
                     <div>
                         {videoAsset ? (
                             <div>
+                                <video 
+                                    src={videoAsset.url}
+                                    loop
+                                    controls
+                                    className='rounded-xl h-[450px] mt-16 bg-black'
+                                    >
 
+                                </video>
                             </div>
                         )
                         :
-                            <div className='cursor-pointer'>
+                            <label className='cursor-pointer'>
                                 <div className="flex flex-col items-center justify-center h-full">
                                     <div className='flex flex-col items-center justify-center'>
                                         <p className='font-bold text-xl'>
@@ -73,7 +89,7 @@ const Upload = () => {
                                     name='upload-video'
                                     onChange={(e) => uploadVideo(e)}
                                 />
-                            </div>
+                            </label>
                         }
                     </div>
                     }
